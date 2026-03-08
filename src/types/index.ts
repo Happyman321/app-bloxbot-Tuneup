@@ -22,6 +22,7 @@ export interface ModelInfo {
   cost?: { input: number; output: number };
   contextLimit?: number;
   variants?: Record<string, Record<string, unknown>>;
+  options?: Record<string, unknown>;
 }
 
 /** Provider info from the API */
