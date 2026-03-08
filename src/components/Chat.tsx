@@ -6,6 +6,7 @@ import ChatInput from "@/components/ChatInput";
 import ChatMessages from "@/components/ChatMessages";
 import ChatSidebar from "@/components/ChatSidebar";
 import LoadingScreen from "@/components/LoadingScreen";
+import UsageBar from "@/components/UsageBar";
 import { useStore } from "@/stores/opencode";
 
 const Settings = lazy(() => import("@/components/Settings"));
@@ -172,20 +173,25 @@ function Chat() {
           // Active session -- show messages + input
           <>
             {/* Session header */}
-            <div className="flex h-10 shrink-0 items-center justify-between border-b px-4">
-              <div className="flex items-center gap-2">
-                <h3 className="truncate text-xs font-semibold">
-                  {activeSessionTitle || "Untitled"}
-                </h3>
-                {isBusy && (
-                  <span className="flex items-center gap-1 text-[10px] text-amber-600">
-                    <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400" />
-                    Working
-                  </span>
-                )}
+            <div className="flex shrink-0 flex-col gap-1 border-b px-4 py-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <h3 className="truncate text-xs font-semibold">
+                    {activeSessionTitle || "Untitled"}
+                  </h3>
+                  {isBusy && (
+                    <span className="flex items-center gap-1 text-[10px] text-amber-600">
+                      <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400" />
+                      Working
+                    </span>
+                  )}
+                </div>
+                <div className="text-[10px] text-muted-foreground">
+                  {activeSessionId?.slice(0, 8)}
+                </div>
               </div>
-              <div className="text-[10px] text-muted-foreground">
-                {activeSessionId?.slice(0, 8)}
+              <div className="flex justify-end">
+                <UsageBar />
               </div>
             </div>
 
