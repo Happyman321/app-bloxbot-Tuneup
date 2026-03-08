@@ -435,6 +435,9 @@ export const useStore = create<OpenCodeState>((set, get) => {
                   providerId: provider.id,
                   providerName: provider.name,
                   status: model.status,
+                  cost: model.cost,
+                  contextLimit: model.limit.context,
+                  options: model.options,
                   variants: model.variants as Record<string, Record<string, unknown>> | undefined,
                 });
               }
@@ -862,6 +865,9 @@ export const useStore = create<OpenCodeState>((set, get) => {
                 providerId: provider.id,
                 providerName: provider.name,
                 status: model.status,
+                cost: model.cost,
+                contextLimit: model.limit.context,
+                options: model.options,
                 variants: model.variants as Record<string, Record<string, unknown>> | undefined,
               });
             }
