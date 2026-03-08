@@ -149,9 +149,7 @@ pub fn run() {
                 }
             });
 
-            // ── Updater plugin ────────────────────────────────────
-            app.handle()
-                .plugin(tauri_plugin_updater::Builder::new().build())?;
+            // ── Updater plugin removed ────────────────────────────────────
 
             // ── Auto-start OpenCode server ────────────────────────
             let state = app.state::<SharedOpenCodeState>().inner().clone();
