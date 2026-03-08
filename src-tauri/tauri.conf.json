@@ -51,11 +51,5 @@
       "resources/launcher"
     ]
   },
-  "plugins": {
-    "updater": {
-      "endpoints": [
-        "https://github.com/Happyman321/app-bloxbot-Tuneup/releases/latest/download/latest.json"
-      ]
-    }
-  }
+  "plugins": {}
 }
