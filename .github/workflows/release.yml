@@ -41,6 +41,15 @@ jobs:
           Expand-Archive -Path "opencode.zip" -DestinationPath "opencode-extracted" -Force
           Move-Item -Path "opencode-extracted/opencode.exe" -Destination "src-tauri/binaries/opencode-x86_64-pc-windows-msvc.exe" -Force
 
+      - name: Download bundled Node.js
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path "src-tauri/resources/nodejs/bin"
+          Invoke-WebRequest -Uri "https://nodejs.org/dist/v20.19.5/node-v20.19.5-win-x64.zip" -OutFile "node.zip"
+          Expand-Archive -Path "node.zip" -DestinationPath "node-extracted" -Force
+          $nodeFolder = Get-ChildItem "node-extracted" | Select-Object -First 1
+          Copy-Item -Path "$($nodeFolder.FullName)\*" -Destination "src-tauri/resources/nodejs/bin" -Recurse -Force
+
       - name: Build and upload release
         uses: tauri-apps/tauri-action@v0
         env:
