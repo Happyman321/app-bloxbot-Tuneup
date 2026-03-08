@@ -33,6 +33,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Download OpenCode binary
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force -Path src-tauri/binaries
+          Invoke-WebRequest -Uri "https://github.com/anomalyco/opencode/releases/latest/download/opencode-windows-x64.zip" -OutFile "opencode.zip"
+          Expand-Archive -Path "opencode.zip" -DestinationPath "opencode-extracted" -Force
+          Move-Item -Path "opencode-extracted/opencode.exe" -Destination "src-tauri/binaries/opencode-x86_64-pc-windows-msvc.exe" -Force
+
       - name: Build and upload release
         uses: tauri-apps/tauri-action@v0
         env:
